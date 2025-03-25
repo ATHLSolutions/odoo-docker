@@ -34,13 +34,19 @@ docker compose -f "docker-compose-build.yml" up -d --build
 1. Khởi tạo Git trong thư mục dự án
 Mở terminal trong Visual Studio Code (hoặc sử dụng Command Prompt/PowerShell) và chạy lệnh sau:
 
+git init
+
 Lệnh này sẽ khởi tạo một repository Git trong thư mục dự án của bạn.
 
 2. Thêm các file vào Git
 Thêm tất cả các file trong thư mục vào Git bằng lệnh:
 
+git add .
+
 3. Commit các thay đổi
 Tạo một commit đầu tiên với thông điệp:
+
+git commit -m "Initial commit"
 
 4. Tạo repository trên GitHub
 Truy cập GitHub và đăng nhập.
@@ -48,9 +54,15 @@ Nhấn vào nút New (hoặc + > New repository).
 Điền tên repository, chọn chế độ Public hoặc Private, sau đó nhấn Create repository.
 5. Kết nối repository GitHub với dự án
 Sao chép URL của repository vừa tạo (ví dụ: https://github.com/username/repository.git) và chạy lệnh sau trong terminal:
+git remote add origin https://github.com/username/repository.git
+
+git remote add origin https://github.com/ATHLSolutions/odoo-docker
 
 6. Đẩy code lên GitHub
 Đẩy code từ máy tính lên GitHub bằng lệnh:
+
+git branch -M main
+git push -u origin main
 
 7. Kiểm tra trên GitHub
 Truy cập repository trên GitHub để kiểm tra xem code đã được upload thành công chưa.

@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:17
-    user: root
     ports:
       - "5234:5432"           # expose port 5234 ra ngoài để test lập trình
     environment:
@@ -14,7 +13,6 @@ services:
 
   odoo:
     image: odoo:18
-    user: root
     depends_on:
       - db
     ports:
