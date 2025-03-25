@@ -54,3 +54,33 @@ Sao chép URL của repository vừa tạo (ví dụ: https://github.com/usernam
 
 7. Kiểm tra trên GitHub
 Truy cập repository trên GitHub để kiểm tra xem code đã được upload thành công chưa.
+
+
+======================
+
+Khi bạn xóa file trong thư mục dự án và muốn cập nhật thay đổi đó lên GitHub, Git yêu cầu bạn phải thực hiện một commit để ghi nhận sự thay đổi (xóa file) này. Dưới đây là cách xử lý:
+
+1. Kiểm tra trạng thái Git
+Chạy lệnh sau để kiểm tra trạng thái của repository:
+
+git status
+
+Bạn sẽ thấy các file bị xóa được liệt kê trong trạng thái "deleted".
+
+
+2. Thêm thay đổi vào staging
+Để thêm các thay đổi (bao gồm việc xóa file) vào staging, chạy lệnh:
+
+git add -u
+
+Lệnh -u sẽ cập nhật tất cả các thay đổi (bao gồm xóa, sửa đổi, hoặc thêm file).
+
+3. Commit thay đổi
+Tạo một commit để ghi nhận việc xóa file:
+
+git commit -m "Remove unnecessary files"
+
+4. Đẩy thay đổi lên GitHub
+Đẩy commit mới lên GitHub:
+
+git push
