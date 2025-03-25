@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:17
+    user: root
+    ports:
+      - "5234:5432"              # expose port 5234 ra ngoài để test lập trình
+    environment:
+      - POSTGRES_USER=odoo18
+      - POSTGRES_PASSWORD=odoo18@2025
+      - POSTGRES_DB=postgres
+    restart: always             # run as a service
+    volumes:
+        - ./data/pgdata:/var/lib/postgresql/data
+
+  odoo:
+    build: ./odoo
+    user: root
+    depends_on:
+      - db
+    ports:
+      - "10018:8069"
+      - "20018:8072" # live chat
+    tty: true
+    command: --
+    environment:
+      - HOST=db
+      - USER=odoo18
+      - PASSWORD=odoo18@2025
+    volumes:
+      - ./data/odoo/addons:/mnt/extra-addons
+      - ./data/odoo/etc:/etc/odoo
+    restart: always             # run as a service
+  
+  nginx:
+    image: nginx:stable
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - odoo
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf  
+      - ./data/nginx/log:/var/log/nginx/ 
